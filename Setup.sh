@@ -139,6 +139,36 @@ cd frontend || { echo "The 'frontend' folder does not exist. Please check the fo
 echo "Installing dependencies in the frontend folder..."
 npm install
 
-# Start the application
-echo "Starting the React application..."
-npm start
+# Navigate back to the root directory
+cd ..
+
+# Check if start_backend.sh exists and change permissions if it does
+if [ -f "./start_backend.sh" ]; then
+    chmod u+rwx "./start_backend.sh"
+else
+    echo "Could not find start_backend.sh file. Your repository may be corrupted or may need to be re-pulled."
+fi
+
+# Check if start_frontend.sh exists and change permissions if it does
+if [ -f "./start_frontend.sh" ]; then
+    chmod u+rwx "./start_frontend.sh"
+else
+    echo "Could not find start_frontend.sh file. Your repository may be corrupted or may need to be re-pulled."
+fi
+
+# Check if run_app.sh exists and change permissions if it does
+if [ -f "./run_app.sh" ]; then
+    chmod u+rwx "./run_app.sh"
+else
+    echo "Could not find run_app.sh file. Your repository may be corrupted or may need to be re-pulled."
+fi
+
+# Check if nuke.sh exists and change permissions if it does
+if [ -f "./nuke.sh" ]; then
+    chmod u+rwx "./nuke.sh"
+else
+    echo "Could not find nuke.sh file. Your repository may be corrupted or may need to be re-pulled."
+fi
+
+# Permission Change Confirmation
+echo "Permissions have been updated for the following scripts: start_backend.sh, start_frontend.sh, run_app.sh, nuke.sh"
