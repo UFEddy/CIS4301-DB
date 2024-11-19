@@ -1,4 +1,14 @@
--- Player table
+CREATE TABLE Season (
+    SeasonYear INTEGER PRIMARY KEY
+);
+
+CREATE TABLE Team (
+    TeamID INTEGER PRIMARY KEY,
+    TeamName VARCHAR(10) NOT NULL,
+    TeamSeason INTEGER,
+    FOREIGN KEY (TeamSeason) REFERENCES Season(SeasonYear) ON DELETE CASCADE
+);
+
 CREATE TABLE Player (
     PlayerID INTEGER PRIMARY KEY,
     Position VARCHAR(50),
@@ -6,21 +16,6 @@ CREATE TABLE Player (
     LastName VARCHAR(50)
 );
 
--- Team table
-CREATE TABLE Team (
-    TeamID INTEGER PRIMARY KEY,
-    TeamName VARCHAR(10) NOT NULL,
-    --TeamStanding INTEGER,
-    TeamSeason INTEGER,
-    FOREIGN KEY (TeamSeason) REFERENCES Season(SeasonYear) ON DELETE CASCADE
-);
-
--- Season table
-CREATE TABLE Season (
-    SeasonYear INTEGER PRIMARY KEY
-);
-
--- PlayerSeason table
 CREATE TABLE PlayerSeason (
     PlayerID INTEGER,
     TeamID INTEGER,
@@ -33,24 +28,18 @@ CREATE TABLE PlayerSeason (
     FOREIGN KEY (SeasonYear) REFERENCES Season(SeasonYear) ON DELETE CASCADE
 );
 
--- Game table
 CREATE TABLE Game (
     GameID INTEGER PRIMARY KEY,
     GameDate DATE,
     SeasonYear INTEGER,
     Attendance INTEGER,
     HomeTeamID INTEGER,
-    -- HomeTeamStanding INTEGER,
     AwayTeamID INTEGER,
-    --AwayTeamStanding INTEGER,
     FOREIGN KEY (SeasonYear) REFERENCES Season(SeasonYear) ON DELETE CASCADE,
     FOREIGN KEY (HomeTeamID) REFERENCES Team(TeamID) ON DELETE CASCADE,
-    FOREIGN KEY (AwayTeamID) REFERENCES Team(TeamID) ON DELETE CASCADE,
-    --FOREIGN KEY (HomeTeamStanding) REFERENCES Team(TeamStanding) ON DELETE CASCADE,
-    --FOREIGN KEY (AwayTeamStanding) REFERENCES Team(TeamStanding) ON DELETE CASCADE
+    FOREIGN KEY (AwayTeamID) REFERENCES Team(TeamID) ON DELETE CASCADE
 );
 
--- PlayerGame table
 CREATE TABLE PlayerGame (
     PlayerID INTEGER,
     GameID INTEGER,
