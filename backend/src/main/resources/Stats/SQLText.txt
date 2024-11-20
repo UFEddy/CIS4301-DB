@@ -9124,3 +9124,15 @@ INSERT INTO Game (GameID, GameDate, SeasonYear, Attendance) VALUES
 (7289, 9/24, 2023, 34501, 30, 2);
 
 
+INSERT INTO PlayerGame (PlayerID, GameID, WAR)
+SELECT
+    p.PlayerID,
+    g.GameID,
+    p.WAR
+FROM
+    PlayerSeason p
+JOIN
+    Game g ON g.SeasonYear = p.SeasonYear
+WHERE
+    g.GameID IS NOT NULL;
+
