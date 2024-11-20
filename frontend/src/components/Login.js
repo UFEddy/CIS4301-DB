@@ -49,7 +49,7 @@ function Login() {
             type="text"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
-            required // Ensure the field is required
+            required
           />
         </div>
         <div>
@@ -58,7 +58,7 @@ function Login() {
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            required // Ensure the field is required
+            required 
           />
         </div>
         <button type="submit">Login</button>
