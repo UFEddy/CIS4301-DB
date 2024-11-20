@@ -1,0 +1,11 @@
+INSERT INTO PlayerGame (PlayerID, GameID, WAR)
+SELECT
+    p.PlayerID,
+    g.GameID,
+    p.WAR
+FROM
+    PlayerSeason p
+JOIN
+    Game g ON g.SeasonYear = p.SeasonYear
+WHERE
+    g.GameID IS NOT NULL;
