@@ -1,4 +1,4 @@
-package MLB_PlayerDB;
+package com.project;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
