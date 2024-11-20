@@ -1,54 +1,3 @@
-CREATE TABLE Season (
-    SeasonYear INTEGER PRIMARY KEY
-);
-
-CREATE TABLE Team (
-    TeamID INTEGER PRIMARY KEY,
-    TeamName VARCHAR(10) NOT NULL,
-    TeamSeason INTEGER,
-    FOREIGN KEY (TeamSeason) REFERENCES Season(SeasonYear) ON DELETE CASCADE
-);
-
-CREATE TABLE Player (
-    PlayerID INTEGER PRIMARY KEY,
-    Position VARCHAR(50),
-    FirstName VARCHAR(50),
-    LastName VARCHAR(50)
-);
-
-CREATE TABLE PlayerSeason (
-    PlayerID INTEGER,
-    TeamID INTEGER,
-    SeasonYear INTEGER,
-    Salary DOUBLE,
-    WAR FLOAT,
-    PRIMARY KEY (PlayerID, TeamID, SeasonYear),
-    FOREIGN KEY (PlayerID) REFERENCES Player(PlayerID) ON DELETE CASCADE,
-    FOREIGN KEY (TeamID) REFERENCES Team(TeamID) ON DELETE CASCADE,
-    FOREIGN KEY (SeasonYear) REFERENCES Season(SeasonYear) ON DELETE CASCADE
-);
-
-CREATE TABLE Game (
-    GameID INTEGER PRIMARY KEY,
-    GameDate DATE,
-    SeasonYear INTEGER,
-    Attendance INTEGER,
-    HomeTeamID INTEGER,
-    AwayTeamID INTEGER,
-    FOREIGN KEY (SeasonYear) REFERENCES Season(SeasonYear) ON DELETE CASCADE,
-    FOREIGN KEY (HomeTeamID) REFERENCES Team(TeamID) ON DELETE CASCADE,
-    FOREIGN KEY (AwayTeamID) REFERENCES Team(TeamID) ON DELETE CASCADE
-);
-
-CREATE TABLE PlayerGame (
-    PlayerID INTEGER,
-    GameID INTEGER,
-    WAR FLOAT,
-    PRIMARY KEY (PlayerID, GameID),
-    FOREIGN KEY (PlayerID) REFERENCES Player(PlayerID) ON DELETE CASCADE,
-    FOREIGN KEY (GameID) REFERENCES Game(GameID) ON DELETE CASCADE
-);
-
 INSERT INTO Season (SeasonYear) VALUES
     (2021),
     (2022),
@@ -9136,3 +9085,13 @@ FROM
 WHERE
     g.GameID IS NOT NULL;
 
+
+-- Insert test user "testuser" and plain-text password "password" ,Admin user with admin role "adminpass"
+INSERT INTO authuser (username, password, enabled) VALUES
+    ('testuser', '$2a$12$DMmLFX8vnxbSGdnULOealenbv6HGfHLKbZ2h07RxcPwzIfOOu8bFK', true),
+    ('admin', '$2a$12$ezhjqz72R4B9.e1F/cTTAufMm.bnZ9O9LOE3dFGA7K6055YgnEuoW', true);
+
+-- Assign the "ROLE_USER"  and ROLE_ADMIN
+INSERT INTO authorities (username, authority) VALUES
+    ('testuser', 'ROLE_USER'),
+    ('admin', 'ROLE_ADMIN');
