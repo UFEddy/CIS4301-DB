@@ -21,7 +21,6 @@ public class User {
     @Column(name = "authority")
     private Set<String> roles;
 
-    // Constructors
     public User() {
     }
 
@@ -32,7 +31,6 @@ public class User {
         this.roles = roles;
     }
 
-    // Getters and Setters
     public String getUsername() {
         return username;
     }
