@@ -10,6 +10,16 @@ function Welcome() {
     navigate('/login');
   };
 
+  // Function to handle test access
+  const handleTestAccess = () => {
+    navigate('/test-welcome'); // Navigate to the test route
+  };
+
+  const goToCostOfWAR = () => {
+    navigate('/cost-of-war'); // Navigate to the Cost of WAR page
+  };
+
+
   return (
     <div className="App">
       <header className="App-header">
@@ -17,6 +27,13 @@ function Welcome() {
         <p>You have successfully logged in!</p>
         <button className="App-button" onClick={handleLogout}>
           Logout
+        </button>
+        {/* Temporary login bypass button */}
+        <button className="App-button" onClick={handleTestAccess}>
+          Test Access
+        </button>
+        <button className="App-button" onClick={goToCostOfWAR}>
+          View Cost of WAR
         </button>
       </header>
     </div>
