@@ -68,7 +68,13 @@ elif [[ "$os_choice" == "win" ]]; then
         if command -v node &> /dev/null; then
             echo "Node.js (with npm and npx) was installed successfully."
         else
-            echo "Node.js installation was not successful. Please install it manually and rerun the script."
+            echo "Node.js installation was not successful. Please ensure the following:"
+            echo "1. Verify the installation by reopening this script after confirming Node.js is installed."
+            echo "2. If Node.js is installed but not detected, add Node.js to the PATH manually."
+            echo "   - Open System Properties > Advanced > Environment Variables."
+            echo "   - In 'System Variables', find the 'Path' variable, select it, and click Edit."
+            echo "   - Add the Node.js installation path (usually C:\\Program Files\\nodejs\\) to PATH."
+            echo "   - Restart this script or open a new command prompt and try again."
             exit 1
         fi
     else
@@ -84,7 +90,13 @@ elif [[ "$os_choice" == "win" ]]; then
         if command -v java &> /dev/null; then
             echo "Java was installed successfully."
         else
-            echo "Java installation was not successful. Please install it manually and rerun the script."
+            echo "Java installation was not successful. Please ensure the following:"
+            echo "1. Verify that Java is installed by reopening this script after confirmation."
+            echo "2. If installed but not detected, add Java to the PATH manually."
+            echo "   - Open System Properties > Advanced > Environment Variables."
+            echo "   - In 'System Variables', find the 'Path' variable, select it, and click Edit."
+            echo "   - Add the Java installation path (e.g., C:\\Program Files\\Java\\jdk-<version>\\bin) to PATH."
+            echo "   - Restart this script or open a new command prompt and try again."
             exit 1
         fi
     else
@@ -99,7 +111,13 @@ elif [[ "$os_choice" == "win" ]]; then
         if command -v mvn &> /dev/null; then
             echo "Maven was installed successfully."
         else
-            echo "Maven installation was not successful. Please install it manually and rerun the script."
+            echo "Maven installation was not successful. Please ensure the following:"
+            echo "1. Verify that Maven is installed by reopening this script after confirmation."
+            echo "2. If installed but not detected, add Maven to the PATH manually."
+            echo "   - Open System Properties > Advanced > Environment Variables."
+            echo "   - In 'System Variables', find the 'Path' variable, select it, and click Edit."
+            echo "   - Add the Maven 'bin' path (e.g., C:\\apache-maven-<version>\\bin) to PATH."
+            echo "   - Restart this script or open a new command prompt and try again."
             exit 1
         fi
     else
@@ -163,6 +181,13 @@ else
     echo "Could not find run_app.sh file. Your repository may be corrupted or may need to be re-pulled."
 fi
 
+# Check if run_app.sh exists and change permissions if it does
+if [ -f "./run_appH2.sh" ]; then
+    chmod u+rwx "./run_appH2.sh"
+else
+    echo "Could not find run_appH2.sh file. Your repository may be corrupted or may need to be re-pulled."
+fi
+
 # Check if nuke.sh exists and change permissions if it does
 if [ -f "./nuke.sh" ]; then
     chmod u+rwx "./nuke.sh"
@@ -171,4 +196,4 @@ else
 fi
 
 # Permission Change Confirmation
-echo "Permissions have been updated for the following scripts: start_backend.sh, start_frontend.sh, run_app.sh, nuke.sh"
+echo "Permissions have been updated for the following scripts: start_backend.sh, start_frontend.sh, run_app.sh, run_appH2.sh, nuke.sh"

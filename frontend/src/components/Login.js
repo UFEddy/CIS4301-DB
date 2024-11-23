@@ -37,7 +37,12 @@ function Login() {
       console.error('Login error:', error.response?.data || error.message);
     }
   };
-  
+
+ // Bypass login button (for testing)
+  const handleBypassLogin = () => {
+    navigate('/test-welcome'); // Navigate directly to the test route
+  };
+
 
   return (
     <div className="login-container">
@@ -64,6 +69,11 @@ function Login() {
         <button type="submit">Login</button>
         {error && <p className="error-message">{error}</p>}
       </form>
+
+      {/* Bypass login button (for testing) */}
+      <button className="bypass-button" onClick={handleBypassLogin}>
+        Bypass Login
+      </button>
     </div>
   );
 }
