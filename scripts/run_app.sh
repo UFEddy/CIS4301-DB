@@ -20,7 +20,6 @@ if [ ! -d "$LOGS_DIR" ]; then
 fi
 
 # Navigate to the backend directory and start the Spring Boot application
-cd ..
 cd backend || {
     echo "Backend directory not found. Exiting."
     exit 1
