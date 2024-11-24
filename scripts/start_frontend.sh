@@ -11,6 +11,7 @@ fi
 echo "Node.js is installed."
 
 # Navigate to the frontend folder
+cd ..
 cd frontend || { echo "The 'frontend' folder does not exist. Please check the folder structure."; exit 1; }
 
 # Run npm install
