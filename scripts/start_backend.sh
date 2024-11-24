@@ -1,6 +1,7 @@
 #!/bin/bash
 
 # Navigate to the backend directory from the main directory
+cd ..
 cd backend || {
     echo "Backend directory not found. Exiting."
     exit 1

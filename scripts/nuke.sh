@@ -1,6 +1,7 @@
 #!/bin/bash
 
 # Navigate to the frontend directory and delete node_modules
+cd ..
 cd frontend || { echo "Frontend directory not found. Exiting."; exit 1; }
 echo "Deleting frontend packages (node_modules). This may take a minute..."
 rm -rf node_modules

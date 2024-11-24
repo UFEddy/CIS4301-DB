@@ -11,7 +11,15 @@ cleanup() {
 # Trap SIGINT and SIGTERM to call cleanup function on script exit
 trap cleanup SIGINT SIGTERM
 
-# Navigate to the backend directory and start the Spring Boot application
+# Create the logs folder if it doesn't exist
+LOGS_DIR="Logs"
+cd ..
+if [ ! -d "$LOGS_DIR" ]; then
+    mkdir "$LOGS_DIR"
+    echo "Created logs directory: $LOGS_DIR"
+fi
+
+# Navigate to the backend directory and start the Spring Boot application in the testing environment
 cd backend || {
     echo "Backend directory not found. Exiting."
     exit 1
@@ -24,10 +32,11 @@ then
     exit 1
 fi
 
-# Start the backend with Maven
-echo "Starting the Spring Boot backend..."
-mvn spring-boot:run &
+# Start the backend with Maven, using the 'test' profile
+echo "Starting the Spring Boot backend in the testing environment..."
+mvn spring-boot:run -Dspring-boot.run.profiles=test > "../$LOGS_DIR/backendH2.log" 2>&1  &
 BACKEND_PID=$!
+echo "Backend is running with PID: $BACKEND_PID. Logs are available in $LOGS_DIR/backend.log."
 
 # Navigate back to the main directory, then to the frontend directory
 cd ../frontend || {
@@ -46,8 +55,9 @@ fi
 
 # Start the frontend with npm
 echo "Starting the React frontend..."
-npm start &
+npm start > "../$LOGS_DIR/frontendH2.log" 2>&1 &
 FRONTEND_PID=$!
+echo "Frontend is running with PID: $FRONTEND_PID. Logs are available in $LOGS_DIR/frontend.log."
 
 # Wait for both processes to exit
 wait "$BACKEND_PID" "$FRONTEND_PID"
