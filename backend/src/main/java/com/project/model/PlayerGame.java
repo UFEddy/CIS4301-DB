@@ -3,31 +3,22 @@ package com.project.model;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "PlayerGame")
-@IdClass(PlayerGameId.class)
 public class PlayerGame {
-    @Id
-    private Integer playerID;
 
-    @Id
-    private Integer gameID;
+    @EmbeddedId
+    private PlayerGameId id;
 
     private Float war;
 
-    public Integer getPlayerID() {
-        return playerID;
+    public PlayerGame() {}
+
+    // Getters and Setters for `id` and `war`
+    public PlayerGameId getId() {
+        return id;
     }
 
-    public void setPlayerID(Integer playerID) {
-        this.playerID = playerID;
-    }
-
-    public Integer getGameID() {
-        return gameID;
-    }
-
-    public void setGameID(Integer gameID) {
-        this.gameID = gameID;
+    public void setId(PlayerGameId id) {
+        this.id = id;
     }
 
     public Float getWar() {
@@ -37,7 +28,4 @@ public class PlayerGame {
     public void setWar(Float war) {
         this.war = war;
     }
-
-    // Getters and Setters
-    // ...
 }

@@ -1,16 +1,45 @@
 package com.project.model;
 
+import jakarta.persistence.Embeddable;
+
 import java.io.Serializable;
 import java.util.Objects;
 
+@Embeddable
 public class PlayerSeasonId implements Serializable {
-    private Integer playerID;
-    private Integer teamID;
+    private Integer playerId;
+    private Integer teamId;
     private Integer seasonYear;
 
-    public PlayerSeasonId(Integer playerID, Integer teamID, Integer seasonYear) {
-        this.playerID = playerID;
-        this.teamID = teamID;
+    public PlayerSeasonId() {}
+
+    public PlayerSeasonId(Integer playerId, Integer teamId, Integer seasonYear) {
+        this.playerId = playerId;
+        this.teamId = teamId;
+        this.seasonYear = seasonYear;
+    }
+
+    public Integer getPlayerId() {
+        return playerId;
+    }
+
+    public void setPlayerId(Integer playerId) {
+        this.playerId = playerId;
+    }
+
+    public Integer getTeamId() {
+        return teamId;
+    }
+
+    public void setTeamId(Integer teamId) {
+        this.teamId = teamId;
+    }
+
+    public Integer getSeasonYear() {
+        return seasonYear;
+    }
+
+    public void setSeasonYear(Integer seasonYear) {
         this.seasonYear = seasonYear;
     }
 
@@ -19,11 +48,13 @@ public class PlayerSeasonId implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         PlayerSeasonId that = (PlayerSeasonId) o;
-        return Objects.equals(playerID, that.playerID) && Objects.equals(teamID, that.teamID) && Objects.equals(seasonYear, that.seasonYear);
+        return Objects.equals(playerId, that.playerId) &&
+                Objects.equals(teamId, that.teamId) &&
+                Objects.equals(seasonYear, that.seasonYear);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(playerID, teamID, seasonYear);
+        return Objects.hash(playerId, teamId, seasonYear);
     }
 }
