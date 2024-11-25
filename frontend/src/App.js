@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-d
 import Login from './components/Login';
 import Welcome from './Welcome';
 import PrivateRoute from './routes/PrivateRoute';
+import CostOfWAR from './components/CostOfWar';
 
 function App() {
   return (
@@ -20,7 +21,11 @@ function App() {
               </PrivateRoute>
             }
           />
-          <Route path="/" element={<Navigate to="/login" />} />
+            {/*Temporary Route for login bypass */}
+            <Route path="/test-welcome" element={<Welcome />} />
+            {/* New Route for Cost of WAR Page */}
+            <Route path="/cost-of-war" element={<CostOfWAR />} />
+            <Route path="/" element={<Navigate to="/login" />} />
         </Routes>
       </div>
     </Router>

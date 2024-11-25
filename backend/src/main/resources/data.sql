@@ -1,8 +1,8 @@
+/*
 INSERT INTO Season (SeasonYear) VALUES
     (2021),
     (2022),
     (2023);
-
 
 INSERT INTO Team (TeamID, TeamName, TeamSeason) VALUES
     (1, ARI, 2021),
@@ -9086,6 +9086,7 @@ FROM
 WHERE
     g.GameID IS NOT NULL;
 
+*/
 
 -- Insert test user "testuser" and plain-text password "password" ,Admin user with admin role "adminpass"
 INSERT INTO authuser (username, password, enabled) VALUES
