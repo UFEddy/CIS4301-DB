@@ -1,9 +1,9 @@
+/*
 INSERT INTO Season (SeasonYear) VALUES
     (2021),
     (2022),
     (2023);
 
-/*
 INSERT INTO Team (TeamID, TeamName, TeamSeason) VALUES
     (1, ARI, 2021),
     (2, ATL, 2021),

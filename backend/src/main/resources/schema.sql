@@ -1,10 +1,19 @@
+DROP TABLE IF EXISTS PlayerGame;
+DROP TABLE IF EXISTS PlayerSeason;
+DROP TABLE IF EXISTS Game;
+DROP TABLE IF EXISTS Team;
+DROP TABLE IF EXISTS Player;
+DROP TABLE IF EXISTS Season;
+DROP TABLE IF EXISTS authorities;
+DROP TABLE IF EXISTS authuser;
+
 -- Season table
-CREATE TABLE Season (
+CREATE TABLE IF NOT EXISTS Season (
     SeasonYear INTEGER PRIMARY KEY
 );
 
 -- Player table
-CREATE TABLE Player (
+CREATE TABLE IF NOT EXISTS Player (
     PlayerID INTEGER PRIMARY KEY,
     Position VARCHAR(50),
     FirstName VARCHAR(50),
@@ -12,7 +21,7 @@ CREATE TABLE Player (
 );
 
 -- Team table
-CREATE TABLE Team (
+CREATE TABLE IF NOT EXISTS Team (
     TeamID INTEGER PRIMARY KEY,
     TeamName VARCHAR(10) NOT NULL,
     TeamStanding INTEGER,
@@ -21,7 +30,7 @@ CREATE TABLE Team (
 );
 
 -- Game table
-CREATE TABLE Game (
+CREATE TABLE IF NOT EXISTS Game (
       GameID INTEGER PRIMARY KEY,
       GameDate DATE,
       SeasonYear INTEGER,
@@ -38,7 +47,7 @@ CREATE TABLE Game (
 );
 
 -- PlayerSeason table
-CREATE TABLE PlayerSeason (
+CREATE TABLE IF NOT EXISTS PlayerSeason (
     PlayerID INTEGER,
     TeamID INTEGER,
     SeasonYear INTEGER,
@@ -51,7 +60,7 @@ CREATE TABLE PlayerSeason (
 );
 
 -- PlayerGame table
-CREATE TABLE PlayerGame (
+CREATE TABLE IF NOT EXISTS PlayerGame (
     PlayerID INTEGER,
     GameID INTEGER,
     WAR FLOAT,
