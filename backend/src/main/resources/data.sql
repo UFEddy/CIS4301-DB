@@ -939,6 +939,7 @@ INSERT INTO Player (PlayerID, Position, FirstName, LastName) VALUES
     (20536, RF, Vidal, Brujan);
 
 
+--XXXX-XX-XX
 INSERT INTO PlayerSeason (PlayerID, TeamID, SeasonYear, Salary, WAR) VALUES
     (15640, 19, 2021, 10175000, 21.24312793),
     (5361, 14, 2021, 22000000, 19.29340818),
