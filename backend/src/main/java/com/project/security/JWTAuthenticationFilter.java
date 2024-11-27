@@ -51,10 +51,6 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
             throw new RuntimeException("Error reading authentication request", e);
         } catch (AuthenticationException e) {
             System.out.println("Authentication failed: " + e.getMessage());
-            BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-            String encodedPassword = encoder.encode("password");
-            System.out.println(encodedPassword);
-
             throw e;
         }
     }
