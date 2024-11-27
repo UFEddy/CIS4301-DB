@@ -1,25 +1,33 @@
 package com.project.model;
 
 import jakarta.persistence.*;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Entity
-@Table(name = "authuser")
-public class User {
+@Table(name = "AUTHUSER")
+public class User implements UserDetails {
 
     @Id
-    @Column(length = 50)
+    @Column(name = "USERNAME", length = 50)
     private String username;
 
-    @Column(length = 100, nullable = false)
+    @Column(name= "PASSWORD", length = 100, nullable = false)
     private String password;
 
+    @Column(name = "ENABLED", nullable = false)
     private boolean enabled = true;
 
     @ElementCollection(fetch = FetchType.EAGER)
-    @CollectionTable(name = "authorities", joinColumns = @JoinColumn(name = "username"))
-    @Column(name = "authority")
-    private Set<String> roles;
+    @CollectionTable(name = "AUTHORITIES", joinColumns = @JoinColumn(name = "USERNAME"))
+    @Column(name = "AUTHORITY")
+    private Set<String> roles = new HashSet<>();
 
     public User() {
     }
@@ -31,6 +39,7 @@ public class User {
         this.roles = roles;
     }
 
+    @Override
     public String getUsername() {
         return username;
     }
@@ -39,16 +48,40 @@ public class User {
         this.username = username;
     }
 
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return roles.stream()
+                .map(role -> (GrantedAuthority) () -> role)
+                .collect(Collectors.toSet());
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
     public String getPassword() {
         return password;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
+    @Override
     public boolean isEnabled() {
         return enabled;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public void setEnabled(boolean enabled) {

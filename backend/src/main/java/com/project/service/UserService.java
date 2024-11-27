@@ -28,13 +28,24 @@ public class UserService implements UserDetailsService {
     }
 
     public boolean existsByUsername(String username) {
+
         return userRepository.existsById(username);
     }
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = userRepository.findByUsername(username)
+        String normalizedUsername = username.trim();
+
+        // Log the username being searched
+        System.out.println("Attempting to load user: " + normalizedUsername);
+
+        User user = userRepository.findByUsername(normalizedUsername)
                 .orElseThrow(() -> new UsernameNotFoundException("User not found"));
+
+        System.out.println("Loaded user: " + user.getUsername());
+        System.out.println("Username length: " + user.getUsername().length());
+
+        System.out.println("User found: " + user.getUsername());
 
         return new org.springframework.security.core.userdetails.User(
                 user.getUsername(),
@@ -44,7 +55,7 @@ public class UserService implements UserDetailsService {
                 true,
                 true,
                 user.getRoles().stream()
-                        .map(role -> new SimpleGrantedAuthority("ROLE_" + role))
+                        .map(role -> new SimpleGrantedAuthority(role))
                         .collect(Collectors.toSet())
         );
     }
