@@ -1,6 +1,6 @@
 -- Player table
 CREATE TABLE Player (
-    PlayerID INTEGER PRIMARY KEY,
+    PlayerID NUMBER PRIMARY KEY,
     Position VARCHAR(50),
     FirstName VARCHAR(50),
     LastName VARCHAR(50)
@@ -8,25 +8,24 @@ CREATE TABLE Player (
 
 -- Team table
 CREATE TABLE Team (
-    TeamID INTEGER PRIMARY KEY,
+    TeamID NUMBER PRIMARY KEY,
     TeamName VARCHAR(10) NOT NULL,
-    --TeamStanding INTEGER,
-    TeamSeason INTEGER,
+    TeamSeason NUMBER,
     FOREIGN KEY (TeamSeason) REFERENCES Season(SeasonYear) ON DELETE CASCADE
 );
 
 -- Season table
 CREATE TABLE Season (
-    SeasonYear INTEGER PRIMARY KEY
+    SeasonYear NUMBER PRIMARY KEY
 );
 
 -- PlayerSeason table
 CREATE TABLE PlayerSeason (
-    PlayerID INTEGER,
-    TeamID INTEGER,
-    SeasonYear INTEGER,
-    Salary DOUBLE,
-    WAR FLOAT,
+    PlayerID NUMBER,
+    TeamID NUMBER,
+    SeasonYear NUMBER,
+    Salary NUMBER,
+    WAR BINARY_DOUBLE,
     PRIMARY KEY (PlayerID, TeamID, SeasonYear),
     FOREIGN KEY (PlayerID) REFERENCES Player(PlayerID) ON DELETE CASCADE,
     FOREIGN KEY (TeamID) REFERENCES Team(TeamID) ON DELETE CASCADE,
@@ -35,26 +34,22 @@ CREATE TABLE PlayerSeason (
 
 -- Game table
 CREATE TABLE Game (
-    GameID INTEGER PRIMARY KEY,
+    GameID NUMBER PRIMARY KEY,
     GameDate DATE,
-    SeasonYear INTEGER,
-    Attendance INTEGER,
-    HomeTeamID INTEGER,
-    -- HomeTeamStanding INTEGER,
-    AwayTeamID INTEGER,
-    --AwayTeamStanding INTEGER,
+    SeasonYear NUMBER,
+    Attendance NUMBER,
+    HomeTeamID NUMBER,
+    AwayTeamID NUMBER,
     FOREIGN KEY (SeasonYear) REFERENCES Season(SeasonYear) ON DELETE CASCADE,
     FOREIGN KEY (HomeTeamID) REFERENCES Team(TeamID) ON DELETE CASCADE,
     FOREIGN KEY (AwayTeamID) REFERENCES Team(TeamID) ON DELETE CASCADE,
-    --FOREIGN KEY (HomeTeamStanding) REFERENCES Team(TeamStanding) ON DELETE CASCADE,
-    --FOREIGN KEY (AwayTeamStanding) REFERENCES Team(TeamStanding) ON DELETE CASCADE
 );
 
 -- PlayerGame table
 CREATE TABLE PlayerGame (
-    PlayerID INTEGER,
-    GameID INTEGER,
-    WAR FLOAT,
+    PlayerID NUMBER,
+    GameID NUMBER,
+    WAR BINARY_DOUBLE,
     PRIMARY KEY (PlayerID, GameID),
     FOREIGN KEY (PlayerID) REFERENCES Player(PlayerID) ON DELETE CASCADE,
     FOREIGN KEY (GameID) REFERENCES Game(GameID) ON DELETE CASCADE
