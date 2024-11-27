@@ -3,96 +3,48 @@ INSERT INTO Season (SeasonYear) VALUES (2022);
 INSERT INTO Season (SeasonYear) VALUES (2023);
 
 
-INSERT INTO Team (TeamID, TeamName, TeamSeason) VALUES (1, 'ARI', 2021);
-INSERT INTO Team (TeamID, TeamName, TeamSeason) VALUES (2, 'ATL', 2021);
-INSERT INTO Team (TeamID, TeamName, TeamSeason) VALUES (3, 'BAL', 2021);
-INSERT INTO Team (TeamID, TeamName, TeamSeason) VALUES (4, 'BOS', 2021);
-INSERT INTO Team (TeamID, TeamName, TeamSeason) VALUES (5, 'CHC', 2021);
-INSERT INTO Team (TeamID, TeamName, TeamSeason) VALUES (6, 'CHW', 2021);
-INSERT INTO Team (TeamID, TeamName, TeamSeason) VALUES (7, 'CIN', 2021);
-INSERT INTO Team (TeamID, TeamName, TeamSeason) VALUES (8, 'CLE', 2021);
-INSERT INTO Team (TeamID, TeamName, TeamSeason) VALUES (9, 'COL', 2021);
-INSERT INTO Team (TeamID, TeamName, TeamSeason) VALUES (10, 'DET', 2021);
-INSERT INTO Team (TeamID, TeamName, TeamSeason) VALUES (11, 'HOU', 2021);
-INSERT INTO Team (TeamID, TeamName, TeamSeason) VALUES (12, 'KCR', 2021);
-INSERT INTO Team (TeamID, TeamName, TeamSeason) VALUES (13, 'LAA', 2021);
-INSERT INTO Team (TeamID, TeamName, TeamSeason) VALUES (14, 'LAD', 2021);
-INSERT INTO Team (TeamID, TeamName, TeamSeason) VALUES (15, 'MIA', 2021);
-INSERT INTO Team (TeamID, TeamName, TeamSeason) VALUES (16, 'MIL', 2021);
-INSERT INTO Team (TeamID, TeamName, TeamSeason) VALUES (17, 'MIN', 2021);
-INSERT INTO Team (TeamID, TeamName, TeamSeason) VALUES (18, 'NYM', 2021);
-INSERT INTO Team (TeamID, TeamName, TeamSeason) VALUES (19, 'NYY', 2021);
-INSERT INTO Team (TeamID, TeamName, TeamSeason) VALUES (20, 'OAK', 2021);
-INSERT INTO Team (TeamID, TeamName, TeamSeason) VALUES (21, 'PHI', 2021);
-INSERT INTO Team (TeamID, TeamName, TeamSeason) VALUES (22, 'PIT', 2021);
-INSERT INTO Team (TeamID, TeamName, TeamSeason) VALUES (23, 'SDP', 2021);
-INSERT INTO Team (TeamID, TeamName, TeamSeason) VALUES (24, 'SEA', 2021);
-INSERT INTO Team (TeamID, TeamName, TeamSeason) VALUES (25, 'SFG', 2021);
-INSERT INTO Team (TeamID, TeamName, TeamSeason) VALUES (26, 'STL', 2021);
-INSERT INTO Team (TeamID, TeamName, TeamSeason) VALUES (27, 'TBR', 2021);
-INSERT INTO Team (TeamID, TeamName, TeamSeason) VALUES (28, 'TEX', 2021);
-INSERT INTO Team (TeamID, TeamName, TeamSeason) VALUES (29, 'TOR', 2021);
-INSERT INTO Team (TeamID, TeamName, TeamSeason) VALUES (30, 'WSN', 2021);
-INSERT INTO Team (TeamID, TeamName, TeamSeason) VALUES (1, 'ARI', 2022);
-INSERT INTO Team (TeamID, TeamName, TeamSeason) VALUES (2, 'ATL', 2022);
-INSERT INTO Team (TeamID, TeamName, TeamSeason) VALUES (3, 'BAL', 2022);
-INSERT INTO Team (TeamID, TeamName, TeamSeason) VALUES (4, 'BOS', 2022);
-INSERT INTO Team (TeamID, TeamName, TeamSeason) VALUES (5, 'CHC', 2022);
-INSERT INTO Team (TeamID, TeamName, TeamSeason) VALUES (6, 'CHW', 2022);
-INSERT INTO Team (TeamID, TeamName, TeamSeason) VALUES (7, 'CIN', 2022);
-INSERT INTO Team (TeamID, TeamName, TeamSeason) VALUES (8, 'CLE', 2022);
-INSERT INTO Team (TeamID, TeamName, TeamSeason) VALUES (9, 'COL', 2022);
-INSERT INTO Team (TeamID, TeamName, TeamSeason) VALUES (10, 'DET', 2022);
-INSERT INTO Team (TeamID, TeamName, TeamSeason) VALUES (11, 'HOU', 2022);
-INSERT INTO Team (TeamID, TeamName, TeamSeason) VALUES (12, 'KCR', 2022);
-INSERT INTO Team (TeamID, TeamName, TeamSeason) VALUES (13, 'LAA', 2022);
-INSERT INTO Team (TeamID, TeamName, TeamSeason) VALUES (14, 'LAD', 2022);
-INSERT INTO Team (TeamID, TeamName, TeamSeason) VALUES (15, 'MIA', 2022);
-INSERT INTO Team (TeamID, TeamName, TeamSeason) VALUES (16, 'MIL', 2022);
-INSERT INTO Team (TeamID, TeamName, TeamSeason) VALUES (17, 'MIN', 2022);
-INSERT INTO Team (TeamID, TeamName, TeamSeason) VALUES (18, 'NYM', 2022);
-INSERT INTO Team (TeamID, TeamName, TeamSeason) VALUES (19, 'NYY', 2022);
-INSERT INTO Team (TeamID, TeamName, TeamSeason) VALUES (20, 'OAK', 2022);
-INSERT INTO Team (TeamID, TeamName, TeamSeason) VALUES (21, 'PHI', 2022);
-INSERT INTO Team (TeamID, TeamName, TeamSeason) VALUES (22, 'PIT', 2022);
-INSERT INTO Team (TeamID, TeamName, TeamSeason) VALUES (23, 'SDP', 2022);
-INSERT INTO Team (TeamID, TeamName, TeamSeason) VALUES (24, 'SEA', 2022);
-INSERT INTO Team (TeamID, TeamName, TeamSeason) VALUES (25, 'SFG', 2022);
-INSERT INTO Team (TeamID, TeamName, TeamSeason) VALUES (26, 'STL', 2022);
-INSERT INTO Team (TeamID, TeamName, TeamSeason) VALUES (27, 'TBR', 2022);
-INSERT INTO Team (TeamID, TeamName, TeamSeason) VALUES (28, 'TEX', 2022);
-INSERT INTO Team (TeamID, TeamName, TeamSeason) VALUES (29, 'TOR', 2022);
-INSERT INTO Team (TeamID, TeamName, TeamSeason) VALUES (30, 'WSN', 2022);
-INSERT INTO Team (TeamID, TeamName, TeamSeason) VALUES (1, 'ARI', 2023);
-INSERT INTO Team (TeamID, TeamName, TeamSeason) VALUES (2, 'ATL', 2023);
-INSERT INTO Team (TeamID, TeamName, TeamSeason) VALUES (3, 'BAL', 2023);
-INSERT INTO Team (TeamID, TeamName, TeamSeason) VALUES (4, 'BOS', 2023);
-INSERT INTO Team (TeamID, TeamName, TeamSeason) VALUES (5, 'CHC', 2023);
-INSERT INTO Team (TeamID, TeamName, TeamSeason) VALUES (6, 'CHW', 2023);
-INSERT INTO Team (TeamID, TeamName, TeamSeason) VALUES (7, 'CIN', 2023);
-INSERT INTO Team (TeamID, TeamName, TeamSeason) VALUES (8, 'CLE', 2023);
-INSERT INTO Team (TeamID, TeamName, TeamSeason) VALUES (9, 'COL', 2023);
-INSERT INTO Team (TeamID, TeamName, TeamSeason) VALUES (10, 'DET', 2023);
-INSERT INTO Team (TeamID, TeamName, TeamSeason) VALUES (11, 'HOU', 2023);
-INSERT INTO Team (TeamID, TeamName, TeamSeason) VALUES (12, 'KCR', 2023);
-INSERT INTO Team (TeamID, TeamName, TeamSeason) VALUES (13, 'LAA', 2023);
-INSERT INTO Team (TeamID, TeamName, TeamSeason) VALUES (14, 'LAD', 2023);
-INSERT INTO Team (TeamID, TeamName, TeamSeason) VALUES (15, 'MIA', 2023);
-INSERT INTO Team (TeamID, TeamName, TeamSeason) VALUES (16, 'MIL', 2023);
-INSERT INTO Team (TeamID, TeamName, TeamSeason) VALUES (17, 'MIN', 2023);
-INSERT INTO Team (TeamID, TeamName, TeamSeason) VALUES (18, 'NYM', 2023);
-INSERT INTO Team (TeamID, TeamName, TeamSeason) VALUES (19, 'NYY', 2023);
-INSERT INTO Team (TeamID, TeamName, TeamSeason) VALUES (20, 'OAK', 2023);
-INSERT INTO Team (TeamID, TeamName, TeamSeason) VALUES (21, 'PHI', 2023);
-INSERT INTO Team (TeamID, TeamName, TeamSeason) VALUES (22, 'PIT', 2023);
-INSERT INTO Team (TeamID, TeamName, TeamSeason) VALUES (23, 'SDP', 2023);
-INSERT INTO Team (TeamID, TeamName, TeamSeason) VALUES (24, 'SEA', 2023);
-INSERT INTO Team (TeamID, TeamName, TeamSeason) VALUES (25, 'SFG', 2023);
-INSERT INTO Team (TeamID, TeamName, TeamSeason) VALUES (26, 'STL', 2023);
-INSERT INTO Team (TeamID, TeamName, TeamSeason) VALUES (27, 'TBR', 2023);
-INSERT INTO Team (TeamID, TeamName, TeamSeason) VALUES (28, 'TEX', 2023);
-INSERT INTO Team (TeamID, TeamName, TeamSeason) VALUES (29, 'TOR', 2023);
-INSERT INTO Team (TeamID, TeamName, TeamSeason) VALUES (30, 'WSN', 2023);
+INSERT INTO Team (TeamID, TeamName) VALUES (1, 'ARI');
+INSERT INTO Team (TeamID, TeamName) VALUES (2, 'ATL');
+INSERT INTO Team (TeamID, TeamName) VALUES (3, 'BAL');
+INSERT INTO Team (TeamID, TeamName) VALUES (4, 'BOS');
+INSERT INTO Team (TeamID, TeamName) VALUES (5, 'CHC');
+INSERT INTO Team (TeamID, TeamName) VALUES (6, 'CHW');
+INSERT INTO Team (TeamID, TeamName) VALUES (7, 'CIN');
+INSERT INTO Team (TeamID, TeamName) VALUES (8, 'CLE');
+INSERT INTO Team (TeamID, TeamName) VALUES (9, 'COL');
+INSERT INTO Team (TeamID, TeamName) VALUES (10, 'DET');
+INSERT INTO Team (TeamID, TeamName) VALUES (11, 'HOU');
+INSERT INTO Team (TeamID, TeamName) VALUES (12, 'KCR');
+INSERT INTO Team (TeamID, TeamName) VALUES (13, 'LAA');
+INSERT INTO Team (TeamID, TeamName) VALUES (14, 'LAD');
+INSERT INTO Team (TeamID, TeamName) VALUES (15, 'MIA');
+INSERT INTO Team (TeamID, TeamName) VALUES (16, 'MIL');
+INSERT INTO Team (TeamID, TeamName) VALUES (17, 'MIN');
+INSERT INTO Team (TeamID, TeamName) VALUES (18, 'NYM');
+INSERT INTO Team (TeamID, TeamName) VALUES (19, 'NYY');
+INSERT INTO Team (TeamID, TeamName) VALUES (20, 'OAK');
+INSERT INTO Team (TeamID, TeamName) VALUES (21, 'PHI');
+INSERT INTO Team (TeamID, TeamName) VALUES (22, 'PIT');
+INSERT INTO Team (TeamID, TeamName) VALUES (23, 'SDP');
+INSERT INTO Team (TeamID, TeamName) VALUES (24, 'SEA');
+INSERT INTO Team (TeamID, TeamName) VALUES (25, 'SFG');
+INSERT INTO Team (TeamID, TeamName) VALUES (26, 'STL');
+INSERT INTO Team (TeamID, TeamName) VALUES (27, 'TBR');
+INSERT INTO Team (TeamID, TeamName) VALUES (28, 'TEX');
+INSERT INTO Team (TeamID, TeamName) VALUES (29, 'TOR');
+INSERT INTO Team (TeamID, TeamName) VALUES (30, 'WSN');
+
+
+
+INSERT INTO TeamSeason (TeamSeasonID, TeamSeasonName, TeamSeasonYear)
+SELECT
+    t.TeamID,
+    t.TeamName,
+    s.SeasonYear
+FROM
+    Team t
+CROSS JOIN
+    Season s;
 
 
 

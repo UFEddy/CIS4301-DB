@@ -14,10 +14,17 @@ CREATE TABLE Player (
 -- Team table
 CREATE TABLE Team (
     TeamID NUMBER PRIMARY KEY,
-    TeamName VARCHAR(10) NOT NULL,
-    TeamSeason NUMBER,
-    FOREIGN KEY (TeamSeason) REFERENCES Season(SeasonYear) ON DELETE CASCADE
+    TeamName VARCHAR(10) NOT NULL
 );
+
+CREATE TABLE TeamSeason (
+    TeamSeasonID NUMBER,
+    TeamSeasonName VARCHAR(50),
+    TeamSeasonYear NUMBER,
+    FOREIGN KEY (TeamSeasonID) REFERENCES Team(TeamID) ON DELETE CASCADE,
+    FOREIGN KEY (TeamSeasonYear) REFERENCES Season(SeasonYear) ON DELETE CASCADE
+);
+
 
 -- PlayerSeason table
 CREATE TABLE PlayerSeason (

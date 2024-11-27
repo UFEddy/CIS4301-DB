@@ -69,8 +69,21 @@ int main() {
     //====================== Teams ======================//
 
     ifstream inFile("../Data/TeamsSchemaFormatted.csv");
-    tableName = "Team (TeamID, TeamName, TeamSeason)";
+    tableName = "Team (TeamID, TeamName)";
     FileToStringFormatter(inFile, outFile, tableName);
+    inFile.close();
+
+    //====================== TeamSeason ======================//
+
+    inFile.open("../Data/TeamSeasonQuery.txt");
+    if (!inFile) {
+        cerr << "Error opening file" << endl;
+        return 1;
+    }
+    while (getline(inFile, line)) {
+        outFile << line << endl;
+    }
+    outFile << "\n\n\n";
     inFile.close();
 
     //====================== Players ======================//

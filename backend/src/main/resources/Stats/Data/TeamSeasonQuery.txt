@@ -1,0 +1,9 @@
+INSERT INTO TeamSeason (TeamSeasonID, TeamSeasonName, TeamSeasonYear)
+SELECT
+    t.TeamID,
+    t.TeamName,
+    s.SeasonYear
+FROM
+    Team t
+CROSS JOIN
+    Season s;
