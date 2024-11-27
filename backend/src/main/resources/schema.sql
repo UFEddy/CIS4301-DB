@@ -1,3 +1,8 @@
+-- Season table
+CREATE TABLE Season (
+    SeasonYear NUMBER PRIMARY KEY
+);
+
 -- Player table
 CREATE TABLE Player (
     PlayerID NUMBER PRIMARY KEY,
@@ -12,11 +17,6 @@ CREATE TABLE Team (
     TeamName VARCHAR(10) NOT NULL,
     TeamSeason NUMBER,
     FOREIGN KEY (TeamSeason) REFERENCES Season(SeasonYear) ON DELETE CASCADE
-);
-
--- Season table
-CREATE TABLE Season (
-    SeasonYear NUMBER PRIMARY KEY
 );
 
 -- PlayerSeason table
@@ -42,7 +42,7 @@ CREATE TABLE Game (
     AwayTeamID NUMBER,
     FOREIGN KEY (SeasonYear) REFERENCES Season(SeasonYear) ON DELETE CASCADE,
     FOREIGN KEY (HomeTeamID) REFERENCES Team(TeamID) ON DELETE CASCADE,
-    FOREIGN KEY (AwayTeamID) REFERENCES Team(TeamID) ON DELETE CASCADE,
+    FOREIGN KEY (AwayTeamID) REFERENCES Team(TeamID) ON DELETE CASCADE
 );
 
 -- PlayerGame table
