@@ -10,7 +10,7 @@ function formatDate(tick) {
 
 function QueryPositionCostTrend( {data}) {
     return (
-        <div style = {{ padding: '20px'}} >
+        <div style = {{ textAlign: 'center', padding: '20px'}} >
             <h2>Query 1 Position Cost Trend Analysis</h2>
             <p>
                 Evaluates how the cost of buying wins has changed over time for certain player positions. 
