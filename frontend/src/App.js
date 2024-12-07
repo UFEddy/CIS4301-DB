@@ -9,7 +9,7 @@ import CostOfWAR from './components/CostOfWar';
 import QueryPositionCostTrend from './components/QueryPositionCostTrend';
 import QueryHomeVsAwayPerformanceBySeason_2 from './components/QueryHomeVsAwayPerformanceBySeason_2';
 import QueryAttendancePerWarChart from './components/QueryAttendancePerWarChart';
-import Query4Placeholder from './components/Query4Placeholder';
+import PlayerPerformanceVSTeamStanding from './components/PlayerPerformanceVSTeamStanding';
 import Query5Placeholder from './components/Query5Placeholder';
 
 function App() {
@@ -35,7 +35,7 @@ function App() {
 
             <Route path="/query2" element={<QueryHomeVsAwayPerformanceBySeason_2 />} />
             <Route path="/query3" element={<QueryAttendancePerWarChart />} />
-            <Route path="/query4" element={<Query4Placeholder />} />
+            <Route path="/query4" element={<PlayerPerformanceVSTeamStanding />} />
             <Route path="/query5" element={<Query5Placeholder />} />
             
         </Routes>
