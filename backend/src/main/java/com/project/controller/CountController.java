@@ -19,7 +19,7 @@ public class CountController {
     public CountController(JdbcTemplate jdbcTemplate) {
 
         this.jdbcTemplate = jdbcTemplate;
-        this.jdbcTemplate.execute("BEGIN DBMS_STATS.GATHER_SCHEMA_STATS('\"EDDY.ROSALES\"'); END;");
+        this.jdbcTemplate.execute("BEGIN DBMS_STATS.GATHER_SCHEMA_STATS('\"YKAZIMLI\"'); END;");
     }
 
 
