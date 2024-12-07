@@ -60,7 +60,7 @@ function QueryPositionCostTrend() {
         "3B": "#0000FF",
         "C": "#FFA500",
         "CF": "#8A2BE2",
-        "LF": "#FFFF00",
+        "LF": "#FFD700",
         "P": "#A52A2A",
         "RF": "#C71585",
         "SS": "#808080"
