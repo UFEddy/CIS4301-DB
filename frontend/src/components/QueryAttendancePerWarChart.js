@@ -4,13 +4,24 @@ import {
 } from 'recharts';
 
 function transformData(data) {
+    console.log("API Response Data:", data);
+
+    // flatten arrays into single array
+    const flatData = data.flat();
+    console.log("Flattened Data:", flatData)
+    
     const dataMap = {};
     const teams = new Set();
 
-    data.forEach(row => {
-        const year = row.Year;
-        const team = row.TeamName;
-        const value = row.AttendancePerWAR;
+    flatData.forEach(row => {
+        const year = row.YEAR;
+        const team = row.TEAMNAME;
+        const value = row.ATTENDANCEPERWAR;
+        
+        if (!team) {
+            console.warn("Missing TEAMNAME for row:", row);
+            return;
+        }
 
         teams.add(team);
 
@@ -19,7 +30,9 @@ function transformData(data) {
         }
         dataMap[year][team] = value;
     });
-    return { transformed: Object.values(dataMap), teams: [...teams] };
+    const transformed = Object.values(dataMap);
+    console.log("Transformed Data for Chart:", transformed);
+    return { transformed, teams: [...teams]};
 }
 
 function QueryAttendancePerWarChart() {
@@ -46,6 +59,11 @@ function QueryAttendancePerWarChart() {
                 setError(err.message);
             });
     }, []);
+
+    const teamColors = [
+        "#8884d8", "#82ca9d", "#ffc658", "#ff7300", "#00c49f",
+        "#d0ed57", "#a4de6c", "#888888", "#aa3333", "#3366cc"
+    ];
 
     return (
         <div style={{ textAlign: 'center', padding: '20px' }} >
@@ -76,14 +94,14 @@ function QueryAttendancePerWarChart() {
                         <CartesianGrid strokeDasharray="3 3" />
 
                         {/* Add lines for each team dynamically */}
-                        {teams.map(team =>  (
+                        {teams.map((team, index) =>  (
                             <Line
-                            key={team}
-                            type="monotone"
-                            dataKey={team}
-                            stroke="#8884d8"
-                            dot={false}
-                            activeDot={{ r: 5 }}
+                                key={team}
+                                type="monotone"
+                                dataKey={team}
+                                stroke={teamColors[index % teamColors.length]}
+                                dot={false}
+                                activeDot={{ r: 5 }}
                             />
                         ))}
                     </LineChart>
