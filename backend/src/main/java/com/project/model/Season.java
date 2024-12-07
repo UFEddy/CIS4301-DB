@@ -1,13 +1,12 @@
 package com.project.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "Season")
 public class Season {
     @Id
+    @Column
     private Integer seasonYear;
 
     public Integer getSeasonYear() {
