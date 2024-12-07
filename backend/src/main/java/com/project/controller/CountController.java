@@ -19,13 +19,13 @@ public class CountController {
     public CountController(JdbcTemplate jdbcTemplate) {
 
         this.jdbcTemplate = jdbcTemplate;
-        this.jdbcTemplate.execute("BEGIN DBMS_STATS.GATHER_SCHEMA_STATS('\"EDDY.ROSALES\"'); END;");
+        //this.jdbcTemplate.execute("BEGIN DBMS_STATS.GATHER_SCHEMA_STATS('\"EDDY.ROSALES\"'); END;");
     }
 
 
     @GetMapping("/count")
     public Map<String, Object> getRowCount() {
-        String sql = "SELECT SUM(num_rows) AS total_rows FROM all_tables WHERE owner = 'EDDY.ROSALES'";
+        String sql = "SELECT COUNT(*) FROM PLAYER";
         Integer totalRows = jdbcTemplate.queryForObject(sql, Integer.class);
 
         // Return JSON

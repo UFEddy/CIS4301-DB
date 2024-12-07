@@ -9,7 +9,7 @@ import CostOfWAR from './components/CostOfWar';
 import QueryPositionCostTrend from './components/QueryPositionCostTrend';
 import Query2Placeholder from './components/Query2Placeholder';
 import QueryAttendancePerWarChart from './components/QueryAttendancePerWarChart';
-import Query4Placeholder from './components/Query4Placeholder';
+import PlayerPerformanceVSTeamStanding from './components/PlayerPerformanceVSTeamStanding';
 import Query5Placeholder from './components/Query5Placeholder';
 
 // Mock data, remove when backend is completed.
@@ -43,7 +43,7 @@ function App() {
 
             <Route path="/query2" element={<Query2Placeholder />} />
             <Route path="/query3" element={<QueryAttendancePerWarChart />} />
-            <Route path="/query4" element={<Query4Placeholder />} />
+            <Route path="/query4" element={<PlayerPerformanceVSTeamStanding />} />
             <Route path="/query5" element={<Query5Placeholder />} />
             
         </Routes>
