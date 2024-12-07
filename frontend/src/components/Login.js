@@ -7,12 +7,11 @@ function Login() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      // Send a POST request to the backend login endpoint
       const response = await axios.post(
         'http://localhost:8080/auth/login',
         { username, password },
@@ -22,58 +21,62 @@ function Login() {
           },
         }
       );
-  
-      // Access the Authorization header and check for the token
+
       const token = response.headers['authorization'];
       if (token && token.startsWith('Bearer ')) {
-        localStorage.setItem('token', token.substring(7)); // Store token without 'Bearer '
-        navigate('/welcome'); // Redirect to the welcome page
+        localStorage.setItem('token', token.substring(7));
+        navigate('/welcome');
       } else {
         setError('Login failed: Token not received or malformed');
       }
     } catch (error) {
-      // Handle login errors
       setError('Invalid username or password');
       console.error('Login error:', error.response?.data || error.message);
     }
   };
 
- // Bypass login button (for testing)
   const handleBypassLogin = () => {
-    navigate('/test-welcome'); // Navigate directly to the test route
+    navigate('/test-welcome');
   };
-
 
   return (
     <div className="login-container">
-      <h2>Login Page</h2>
-      <form className="login-form" onSubmit={handleSubmit}>
-        <div>
-          <label>Username:</label>
-          <input
-            type="text"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            required
-          />
-        </div>
-        <div>
-          <label>Password:</label>
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required 
-          />
-        </div>
-        <button type="submit">Login</button>
-        {error && <p className="error-message">{error}</p>}
-      </form>
+      <div className="app-name">MLB Player Evaluation - CIS4301 Project</div>
+      <div className="login-card">
+        <h2>Login</h2>
+        <form className="login-form" onSubmit={handleSubmit}>
+          <div className="form-group">
+            <label htmlFor="username">Username</label>
+            <input
+              id="username"
+              type="text"
+              placeholder="Enter your username"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              required
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="password">Password</label>
+            <input
+              id="password"
+              type="password"
+              placeholder="Enter your password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+          </div>
+          <button type="submit" className="modern-button">
+            Login
+          </button>
+          {error && <p className="error-message">{error}</p>}
+        </form>
 
-      {/* Bypass login button (for testing) */}
-      <button className="bypass-button" onClick={handleBypassLogin}>
-        Bypass Login
-      </button>
+        <button className="modern-button bypass-button" onClick={handleBypassLogin}>
+          Bypass Login
+        </button>
+      </div>
     </div>
   );
 }

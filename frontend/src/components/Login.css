@@ -1,55 +1,100 @@
 .login-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh;
-    background-color: #f4f4f9;
-    font-family: Arial, sans-serif;
-  }
-  
-  .login-container h2 {
-    color: #333;
-  }
-  
-  .login-form {
-    background-color: white;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    max-width: 300px;
-    width: 100%;
-  }
-  
-  .login-form div {
-    margin-bottom: 15px;
-  }
-  
-  .login-form label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
-  }
-  
-  .login-form input {
-    width: 100%;
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-  }
-  
-  .login-form button {
-    width: 100%;
-    padding: 10px;
-    background-color: #61dafb;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 16px;
-  }
-  
-  .login-form button:hover {
-    background-color: #21a1f1;
-  }
-  
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: linear-gradient(to bottom right, #3a86ff, #8338ec);
+  font-family: 'Arial', sans-serif;
+}
+
+.app-name {
+  font-size: 28px;
+  font-weight: bold;
+  color: white;
+  margin-bottom: 30px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.login-card {
+  background: white;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  max-width: 400px;
+  width: 100%;
+  text-align: center;
+}
+
+.login-card h2 {
+  font-size: 24px;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.login-form {
+  width: 100%;
+}
+
+.form-group {
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.form-group label {
+  display: block;
+  font-size: 14px;
+  font-weight: bold;
+  color: #555;
+  margin-bottom: 8px;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 10px;
+  font-size: 14px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  transition: border 0.3s;
+}
+
+.form-group input:focus {
+  border-color: #3a86ff;
+  outline: none;
+}
+
+.modern-button {
+  width: 100%;
+  padding: 12px 20px;
+  font-size: 16px;
+  color: white;
+  background: linear-gradient(to right, #8338ec, #3a86ff);
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s;
+}
+
+.modern-button:hover {
+  background: linear-gradient(to right, #3a86ff, #8338ec);
+  transform: scale(1.05);
+}
+
+.modern-button:active {
+  transform: scale(0.95);
+}
+
+.bypass-button {
+  margin-top: 20px;
+  background: linear-gradient(to right, #ff006e, #fb5607);
+}
+
+.bypass-button:hover {
+  background: linear-gradient(to right, #fb5607, #ff006e);
+}
+
+.error-message {
+  color: red;
+  font-size: 14px;
+  margin-top: 10px;
+}
