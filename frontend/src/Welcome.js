@@ -75,27 +75,27 @@ function Welcome() {
         <p className="welcome-message">Welcome! Explore player statistics and performance analysis.</p>
 
         <div className="button-grid">
-          <button className="modern-button" onClick={handleTestAccess}>
+          {/* <button className="modern-button" onClick={handleTestAccess}>
             Test Access
           </button>
           <button className="modern-button" onClick={goToCostOfWAR}>
             View Cost of WAR
-          </button>
+          </button> */}
           <button className="modern-button" onClick={goToPositionTrends}>
-            Query 1: Position Cost Analysis
+            Position Cost Analysis
           </button>
           <button className="modern-button" onClick={goToQuery2}>
-            Query 2: Home vs Away Performance
+            Home vs Away Performance
           </button>
           <button className="modern-button" onClick={goToQuery3}>
-            Query 3: Performance vs Attendance
+            Performance vs Attendance
           </button>
           <button className="modern-button" onClick={goToQuery4}>
-            Query 4: Performance vs Standing
+            Performance vs Standing
           </button>
-          <button className="modern-button" onClick={goToQuery5}>
+          {/* <button className="modern-button" onClick={goToQuery5}>
             Query 5: Cost of Buying Wins
-          </button>
+          </button> */}
         </div>
 
         {totalRows !== null && <p className="result">Total Rows: {totalRows}</p>}
