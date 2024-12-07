@@ -15,8 +15,7 @@ CREATE TABLE Season (
 CREATE TABLE Player (
     PlayerID NUMBER PRIMARY KEY,
     Position VARCHAR(50),
-    FirstName VARCHAR(50),
-    LastName VARCHAR(50)
+    Name VARCHAR(50)
 );
 
 -- Team table
