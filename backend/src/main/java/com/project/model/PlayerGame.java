@@ -8,7 +8,8 @@ public class PlayerGame {
     @EmbeddedId
     private PlayerGameId id;
 
-    private Float war;
+    @Column(name = "war", columnDefinition = "binary_double") // Align with database column type
+    private Double war;
 
     public PlayerGame() {}
 
@@ -21,11 +22,11 @@ public class PlayerGame {
         this.id = id;
     }
 
-    public Float getWar() {
+    public Double getWar() {
         return war;
     }
 
-    public void setWar(Float war) {
+    public void setWar(Double war) {
         this.war = war;
     }
 }
