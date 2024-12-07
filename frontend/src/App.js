@@ -7,6 +7,8 @@ import Welcome from './Welcome';
 import PrivateRoute from './routes/PrivateRoute';
 import CostOfWAR from './components/CostOfWar';
 import QueryPositionCostTrend from './components/QueryPositionCostTrend';
+import QueryHomeVsAwayPerformanceBySeason_2 from './components/QueryHomeVsAwayPerformanceBySeason_2';
+import Query3Placeholder from './components/Query3Placeholder';
 import Query2Placeholder from './components/Query2Placeholder';
 import QueryAttendancePerWarChart from './components/QueryAttendancePerWarChart';
 import Query4Placeholder from './components/Query4Placeholder';
@@ -33,7 +35,8 @@ function App() {
             <Route path="/position-trend" element={<QueryPositionCostTrend/>} />
             <Route path="/" element={<Navigate to="/login" />} />
 
-            <Route path="/query2" element={<Query2Placeholder />} />
+            <Route path="/query2" element={<QueryHomeVsAwayPerformanceBySeason_2 />} />
+            <Route path="/query3" element={<Query3Placeholder />} />
             <Route path="/query3" element={<QueryAttendancePerWarChart />} />
             <Route path="/query4" element={<Query4Placeholder />} />
             <Route path="/query5" element={<Query5Placeholder />} />
