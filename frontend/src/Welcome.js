@@ -99,11 +99,11 @@ function Welcome() {
         </button>
 
         <button className="App-button" onClick={goToQuery3}>
-          Query 3 Analysis of Player Performance vs Current Standing
+          Query 3 Analysis of Player Performance vs Fan Attendance
         </button>
 
-        <button className="App-button" onClick={goToQuery4}>
-          Query 4 Analysis of Player Performance vs Fan Attendance
+        <button className="App-button" onClick={goToQuery4}>          
+          Query 4 Analysis of Player Performance vs Current Standing
         </button>
 
         <button className="App-button" onClick={goToQuery5}>
