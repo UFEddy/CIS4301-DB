@@ -42,9 +42,9 @@ function PlayerPerformanceVSTeamStanding() {
                 const token = localStorage.getItem("jwt"); // The actual token string stored in localStorage
 
                 // Ensure the token is present before making the request
-                if (!token) {
-                    throw new Error("Authentication token is missing. Please log in.");
-                }
+                // if (!token) {
+                //     throw new Error("Authentication token is missing. Please log in.");
+                // }
 
                 // Make the API request to fetch players
                 const response = await fetch("http://localhost:8080/api/players", {

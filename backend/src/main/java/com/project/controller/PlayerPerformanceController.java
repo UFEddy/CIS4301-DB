@@ -36,14 +36,14 @@ public class PlayerPerformanceController {
      */
     @GetMapping("/players")
     public List<Map<String, Object>> getAllPlayers() {
-        String sql = """
-        SELECT
-        PlayerID,
-        Name AS PlayerName
-        FROM 
-        Player
-        ORDER BY Name;
-    """;
+        String sql =
+        " SELECT " +
+        "   PlayerID," +
+        "   Name AS PlayerName " +
+        " FROM " +
+        "   Player "+
+        " ORDER BY Name";
+
         try {
             List<Map<String, Object>> players = jdbcTemplate.queryForList(sql);
             System.out.println("Fetched Players: " + players);
