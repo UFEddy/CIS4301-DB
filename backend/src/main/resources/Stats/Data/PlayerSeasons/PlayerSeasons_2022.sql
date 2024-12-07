@@ -1058,3 +1058,4 @@ INSERT INTO PlayerSeason (PlayerID, TeamID, SeasonYear, Salary, WAR) VALUES (163
 INSERT INTO PlayerSeason (PlayerID, TeamID, SeasonYear, Salary, WAR) VALUES (14329, 22, 2022, 77960.00, -0.10);
 INSERT INTO PlayerSeason (PlayerID, TeamID, SeasonYear, Salary, WAR) VALUES (12282, 3, 2022, 700000.00, 0.30);
 INSERT INTO PlayerSeason (PlayerID, TeamID, SeasonYear, Salary, WAR) VALUES (14332, 20, 2022, 179124.00, 0.10);
+COMMIT;

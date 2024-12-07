@@ -1211,3 +1211,4 @@ INSERT INTO PlayerSeason (PlayerID, TeamID, SeasonYear, Salary, WAR) VALUES (143
 INSERT INTO PlayerSeason (PlayerID, TeamID, SeasonYear, Salary, WAR) VALUES (14332, 29, 2021, 255676.00, 0.20);
 INSERT INTO PlayerSeason (PlayerID, TeamID, SeasonYear, Salary, WAR) VALUES (12284, 2, 2021, 260695.00, -0.60);
 INSERT INTO PlayerSeason (PlayerID, TeamID, SeasonYear, Salary, WAR) VALUES (20476, 11, 2021, 67474.00, 0.10);
+COMMIT;

@@ -908,3 +908,4 @@ INSERT INTO PlayerSeason (PlayerID, TeamID, SeasonYear, Salary, WAR) VALUES (184
 INSERT INTO PlayerSeason (PlayerID, TeamID, SeasonYear, Salary, WAR) VALUES (16376, 25, 2023, 18000000.00, 0.80);
 INSERT INTO PlayerSeason (PlayerID, TeamID, SeasonYear, Salary, WAR) VALUES (10233, 28, 2023, 1874973.00, 0.50);
 INSERT INTO PlayerSeason (PlayerID, TeamID, SeasonYear, Salary, WAR) VALUES (20476, 1, 2023, 92904.00, -0.20);
+COMMIT;
