@@ -55,6 +55,8 @@ CREATE TABLE Game (
     Attendance NUMBER,
     HomeTeamID NUMBER,
     AwayTeamID NUMBER,
+    HomeTeamStanding NUMBER,
+    AwayTeamStanding NUMBER,
     FOREIGN KEY (SeasonYear) REFERENCES Season(SeasonYear) ON DELETE CASCADE,
     FOREIGN KEY (HomeTeamID) REFERENCES Team(TeamID) ON DELETE CASCADE,
     FOREIGN KEY (AwayTeamID) REFERENCES Team(TeamID) ON DELETE CASCADE

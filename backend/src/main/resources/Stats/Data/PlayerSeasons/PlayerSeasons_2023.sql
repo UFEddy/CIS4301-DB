@@ -1,5 +1,4 @@
 -- SQL Insert Statements for PlayerSeason Data
-INSERT INTO PlayerSeason (PlayerID, TeamID, SeasonYear, Salary, WAR) VALUES (-1, 25, 2023, 1000000.00, 0.00);
 INSERT INTO PlayerSeason (PlayerID, TeamID, SeasonYear, Salary, WAR) VALUES (10243, 9, 2023, 3888902.00, 0.60);
 INSERT INTO PlayerSeason (PlayerID, TeamID, SeasonYear, Salary, WAR) VALUES (22532, 8, 2023, 592263.00, 0.20);
 INSERT INTO PlayerSeason (PlayerID, TeamID, SeasonYear, Salary, WAR) VALUES (24580, 30, 2023, 730000.00, 1.60);
