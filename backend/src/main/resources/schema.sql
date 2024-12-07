@@ -7,8 +7,7 @@ CREATE TABLE Season (
 CREATE TABLE Player (
     PlayerID NUMBER PRIMARY KEY,
     Position VARCHAR(50),
-    FirstName VARCHAR(50),
-    LastName VARCHAR(50)
+    Name VARCHAR(50)
 );
 
 -- Team table
@@ -47,6 +46,8 @@ CREATE TABLE Game (
     Attendance NUMBER,
     HomeTeamID NUMBER,
     AwayTeamID NUMBER,
+    HomeTeamStanding NUMBER,
+    AwayTeamStanding NUMBER,
     FOREIGN KEY (SeasonYear) REFERENCES Season(SeasonYear) ON DELETE CASCADE,
     FOREIGN KEY (HomeTeamID) REFERENCES Team(TeamID) ON DELETE CASCADE,
     FOREIGN KEY (AwayTeamID) REFERENCES Team(TeamID) ON DELETE CASCADE
