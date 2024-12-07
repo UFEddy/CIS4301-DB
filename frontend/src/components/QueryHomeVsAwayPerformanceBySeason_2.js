@@ -1,36 +1,41 @@
 import React, { useState } from 'react';
 import { fetchQuery2Results } from '../services/apiService';
-import { Bar } from 'react-chartjs-2';
+import { Line } from 'react-chartjs-2';
 import 'chart.js/auto';
 
 function QueryHomeVsAwayPerformanceBySeason_2() {
     const [seasonYear, setSeasonYear] = useState('');
-    const [metric, setMetric] = useState('WAR');
     const [chartData, setChartData] = useState(null);
 
     const fetchData = async () => {
         try {
             const data = await fetchQuery2Results(seasonYear);
-            const homeData = data.filter(d => d.GameType === 'Home').map(d => parseFloat(d.AverageWAR));
-            const awayData = data.filter(d => d.GameType === 'Away').map(d => parseFloat(d.AverageWAR));
-            const labels = [...new Set(data.map(d => d.Year))];
-
+            const filteredData = data.filter(d => d.GAMETYPE !== null);
+            const months = [...new Set(filteredData.map(d => d.MONTH))];
+            const homeData = months.map(month =>
+                filteredData.find(d => d.MONTH === month && d.GAMETYPE === 'Home')?.AVERAGEWAR || 0
+            );
+            const awayData = months.map(month =>
+                filteredData.find(d => d.MONTH === month && d.GAMETYPE === 'Away')?.AVERAGEWAR || 0
+            );
             setChartData({
-                labels,
+                labels: months,
                 datasets: [
                     {
                         label: 'Home Performance',
                         data: homeData,
-                        backgroundColor: 'rgba(54, 162, 235, 0.6)',
                         borderColor: 'rgba(54, 162, 235, 1)',
-                        borderWidth: 1,
+                        backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                        borderWidth: 2,
+                        fill: true,
                     },
                     {
                         label: 'Away Performance',
                         data: awayData,
-                        backgroundColor: 'rgba(255, 99, 132, 0.6)',
                         borderColor: 'rgba(255, 99, 132, 1)',
-                        borderWidth: 1,
+                        backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                        borderWidth: 2,
+                        fill: true,
                     },
                 ],
             });
@@ -41,12 +46,10 @@ function QueryHomeVsAwayPerformanceBySeason_2() {
 
     return (
         <div style={{ textAlign: 'center', padding: '20px', fontFamily: 'Arial, sans-serif' }}>
-            <h2 style={{ marginBottom: '10px' }}>Query 2: Player Performance: Home vs Away</h2>
+            <h2 style={{ marginBottom: '10px' }}>Query 2: Monthly Player Performance: Home vs Away</h2>
             <p style={{ fontSize: '16px', color: '#555', marginBottom: '20px' }}>
-                Evaluates the difference in player performance when playing at home versus on the road.
-                Users can select a specific season year to analyze how performance metrics like WAR
-                vary depending on the game location. The results are displayed in an interactive graph that provides insights
-                into player effectiveness in home versus away settings.
+                Analyze the average WAR performance of all players. Display the result by month with two values: Home and Away games
+                for the selected season year.
             </p>
             <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '20px', gap: '10px' }}>
                 <input
@@ -78,7 +81,7 @@ function QueryHomeVsAwayPerformanceBySeason_2() {
             </div>
             {chartData ? (
                 <div style={{ width: '80%', margin: '0 auto' }}>
-                    <Bar
+                    <Line
                         data={chartData}
                         options={{
                             responsive: true,
@@ -97,13 +100,13 @@ function QueryHomeVsAwayPerformanceBySeason_2() {
                                 x: {
                                     title: {
                                         display: true,
-                                        text: 'Year',
+                                        text: 'Month',
                                     },
                                 },
                                 y: {
                                     title: {
                                         display: true,
-                                        text: metric,
+                                        text: 'Average WAR',
                                     },
                                     beginAtZero: true,
                                 },
