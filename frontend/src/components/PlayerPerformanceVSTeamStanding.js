@@ -12,133 +12,130 @@ import {
 } from "recharts";
 
 function PlayerPerformanceVSTeamStanding() {
-    // States for dropdowns and data
-    const [players, setPlayers] = useState([]); // Player dropdown options
-    const [selectedPlayer, setSelectedPlayer] = useState(""); // Selected player ID
-    const [selectedYear, setSelectedYear] = useState("2021"); // Default season year
+    // State variables for managing the data and user selections
+    const [players, setPlayers] = useState([]); // List of players for the dropdown
+    const [selectedPlayer, setSelectedPlayer] = useState(""); // Currently selected player ID
+    const [selectedYear, setSelectedYear] = useState("2021"); // Default selected year
     const [performanceData, setPerformanceData] = useState([]); // Data for the chart
-    const [loading, setLoading] = useState(false); // Loading state
-    const [error, setError] = useState(null); // Error state
-    const [availableYears, setAvailableYears] = useState([]); // Available years for dropdown
-    const [teams, setTeams] = useState([]);
-    const [seasons, setSeasons] = useState([]);
-    const [selectedTeam, setSelectedTeam] = useState("");
-    const [selectedSeason, setSelectedSeason] = useState("");
+    const [loading, setLoading] = useState(false); // Loading state indicator
+    const [error, setError] = useState(null); // Error state indicator
+    const [availableYears, setAvailableYears] = useState([]); // Available years for selection
+    const [teams, setTeams] = useState([]); // List of teams for filtering
+    const [seasons, setSeasons] = useState([]); // List of seasons for filtering
+    const [selectedTeam, setSelectedTeam] = useState(""); // Selected team ID
+    const [selectedSeason, setSelectedSeason] = useState(""); // Selected season year
 
+    /**
+     * Fetches the list of players based on selected team and season.
+     * Updates the `players` state with the retrieved data.
+     */
     const fetchPlayers = async () => {
         try {
-            // Retrieve the JWT token from localStorage to authenticate the request
-            const token = localStorage.getItem("jwt");
+            const token = localStorage.getItem("jwt"); // JWT token for authentication
+            const queryParams = new URLSearchParams(); // Helper for constructing query strings
 
-            // Create an object to hold query parameters
-            const queryParams = new URLSearchParams();
-
-            // If a team is selected, add the teamId as a query parameter
+            // Add team and season filters if selected
             if (selectedTeam) queryParams.append("teamId", selectedTeam);
-
-            // If a season is selected, add the seasonYear as a query parameter
             if (selectedSeason) queryParams.append("seasonYear", selectedSeason);
 
-            // Send a GET request to the API with the query parameters and authorization header
+            // Fetch players from the API
             const response = await fetch(
-                `http://localhost:8080/api/players?${queryParams.toString()}`, // Constructed URL with query parameters
+                `http://localhost:8080/api/players?${queryParams.toString()}`,
                 {
-                    headers: {
-                        Authorization: `Bearer ${token}`, // Include the JWT token in the Authorization header
-                    },
+                    headers: { Authorization: `Bearer ${token}` }, // Include JWT in request headers
                 }
             );
 
-            // Check if the response status is not OK (e.g., 404, 500)
             if (!response.ok) {
                 throw new Error(`Failed to fetch players: ${response.status}`);
             }
 
-            // Parse the response JSON to get the player data
             const data = await response.json();
 
-            // Transform keys to match expected format
+            // Format the data for use in the dropdown
             const formattedData = data.map((player) => ({
-                PlayerID: player.PLAYERID, // Transform PLAYERID to PlayerID
-                PlayerName: player.PLAYERNAME, // Transform PLAYERNAME to PlayerName
+                PlayerID: player.PLAYERID,
+                PlayerName: player.PLAYERNAME,
             }));
 
             setPlayers(formattedData); // Update state with formatted data
-
         } catch (error) {
-            // Log the error to the console for debugging
-            console.error("Error fetching players:", error);
+            console.error("Error fetching players:", error); // Log errors for debugging
         }
     };
 
+    /**
+     * Fetches filter options for teams and seasons from the API.
+     * Updates the `teams` and `seasons` state variables.
+     */
     const fetchFilters = async () => {
         try {
             const token = localStorage.getItem("jwt");
 
-            // Fetch Teams
+            // Fetch teams data
             const teamResponse = await fetch("http://localhost:8080/api/allTeams", {
                 headers: { Authorization: `Bearer ${token}` },
             });
             const teamsData = await teamResponse.json();
-            // Transform team keys to match the expected format
             const formattedTeams = teamsData.map((team) => ({
-                TeamID: team.TEAMID, // Transform TEAMID to TeamID
-                TeamName: team.TEAMNAME, // Transform TEAMNAME to TeamName
+                TeamID: team.TEAMID,
+                TeamName: team.TEAMNAME,
             }));
-            setTeams(formattedTeams); // Update state with formatted data
+            setTeams(formattedTeams);
 
-            // Fetch Seasons
+            // Fetch seasons data
             const seasonResponse = await fetch("http://localhost:8080/api/seasons", {
                 headers: { Authorization: `Bearer ${token}` },
             });
             const seasonsData = await seasonResponse.json();
             setSeasons(seasonsData);
         } catch (error) {
-            console.error("Error fetching filters:", error);
+            console.error("Error fetching filters:", error); // Log errors for debugging
         }
     };
 
-
+    /**
+     * Fetches available years for selection.
+     * Updates the `availableYears` state variable.
+     */
     useEffect(() => {
         const fetchAvailableYears = async () => {
             try {
                 const response = await fetch("http://localhost:8080/api/available-years");
                 const data = await response.json();
-                setAvailableYears(data);
+                setAvailableYears(data); // Update state with available years
             } catch (err) {
-                console.error("Error fetching available years:", err);
-                setError("Failed to load available years.");
+                console.error("Error fetching available years:", err); // Log errors
+                setError("Failed to load available years."); // Update error state
             }
         };
         fetchAvailableYears();
+    }, []); // Empty dependency array ensures this runs only once on mount
+
+     // Fetches filter options (teams and seasons) when the component mounts.
+    useEffect(() => {
+        fetchFilters(); // Load filters on initial render
     }, []);
 
+    //Fetches players whenever the selected team or season changes.
 
-    // Fetch filters on component mount
     useEffect(() => {
-        fetchFilters();
-    }, []);
-
-    // Fetch players when filters change
-    useEffect(() => {
-        fetchPlayers();
+        fetchPlayers(); // Load players when filters change
     }, [selectedTeam, selectedSeason]);
 
-    // Fetch performance data whenever player or season changes
+    //Fetches performance data whenever a player and year are selected.
     useEffect(() => {
         if (selectedPlayer && selectedYear) {
             const fetchPerformanceData = async () => {
-                setLoading(true);
-                setError(null);
+                setLoading(true); // Show loading indicator
+                setError(null); // Clear any previous errors
 
                 try {
+                    // Fetch performance data for the selected player and year
                     const response = await fetch(
                         `http://localhost:8080/api/player-war-trend?playerId=${selectedPlayer}&seasonYear=${selectedYear}`,
                         {
-                            headers: {
-                                "Content-Type": "application/json",
-                                // "Authorization": `Bearer ${jwt}`,
-                            },
+                            headers: { "Content-Type": "application/json" },
                         }
                     );
 
@@ -147,148 +144,105 @@ function PlayerPerformanceVSTeamStanding() {
                     }
 
                     const data = await response.json();
-                    setPerformanceData(data);
+
+                    // Transform data for better readability
+                    const transformedData = data.map((item) => {
+                        const date = new Date(item.TIMEPERIOD); // Parse the TIMEPERIOD field
+                        const monthNames = [
+                            "January", "February", "March", "April", "May", "June",
+                            "July", "August", "September", "October", "November", "December",
+                        ];
+                        const formattedDate = `${monthNames[date.getMonth()]} ${date.getFullYear()}`; // Format to "Month Year"
+                        return {
+                            TimePeriod: formattedDate,
+                            TotalWARInHighStakes: item.TOTALWARINHIGHSTAKES,
+                            CumulativeWAR: item.CUMULATIVEWAR,
+                        };
+                    });
+
+                    console.log("Transformed Data:", transformedData); // Debug transformed data
+                    setPerformanceData(transformedData); // Update state with chart data
                 } catch (err) {
-                    console.error("Error fetching performance data:", err);
-                    setError("Failed to load performance data. Please try again later.");
+                    console.error("Error fetching performance data:", err); // Log errors
+                    setError("Failed to load performance data. Please try again later."); // Update error state
                 } finally {
-                    setLoading(false);
+                    setLoading(false); // Hide loading indicator
                 }
             };
             fetchPerformanceData();
         }
-    }, [selectedPlayer, selectedYear]);
+    }, [selectedPlayer, selectedYear]); // Trigger whenever player or year changes
+
 
     return (
-        <div style={{textAlign: "center", padding: "20px"}}>
-            {/* Title of the section */}
+        <div style={{ textAlign: "center", padding: "20px" }}>
             <h2>Player Performance vs. Team Standing</h2>
-
-            {/* Brief description of the chart */}
             <p>
                 Analyze the relationship between individual player performance and team
-                standings throughout a season. These trends reveal how players excel in
-                high-pressure scenarios.
+                standings throughout a season.
             </p>
 
             <div>
-                {/* Title for the filters section */}
                 <h2>Filter Players</h2>
-
-                {/* Dropdown to filter players by team */}
                 <label>
                     Select Team:
-                    <select
-                        value={selectedTeam} // The current selected team value from state
-                        onChange={(e) => setSelectedTeam(e.target.value)} // Update the selectedTeam state on change
-                    >
-                        {/* Default option to select all teams */}
+                    <select value={selectedTeam} onChange={(e) => setSelectedTeam(e.target.value)}>
                         <option value="">-- All Teams --</option>
-
-                        {/* Dynamically render team options */}
                         {teams.map((team) => (
                             <option key={team.TeamID} value={team.TeamID}>
-                                {team.TeamName} {/* Display team name */}
+                                {team.TeamName}
                             </option>
                         ))}
                     </select>
                 </label>
 
-                {/* Dropdown to filter players by season */}
                 <label>
                     Select Season:
-                    <select
-                        value={selectedSeason} // The current selected season value from state
-                        onChange={(e) => setSelectedSeason(e.target.value)} // Update the selectedSeason state on change
-                    >
-                        {/* Default option to select all seasons */}
+                    <select value={selectedSeason} onChange={(e) => setSelectedSeason(e.target.value)}>
                         <option value="">-- All Seasons --</option>
-
-                        {/* Dynamically render season options */}
                         {seasons.map((season) => (
                             <option key={season} value={season}>
-                                {season} {/* Display season year */}
+                                {season}
                             </option>
                         ))}
                     </select>
                 </label>
 
-                {/* Dropdown to select a player */}
                 <label>
                     Select Player:
                     <select
                         value={selectedPlayer}
                         onChange={(e) => setSelectedPlayer(e.target.value)}
-                        disabled={!selectedTeam || !selectedSeason} // Disable dropdown if prerequisites aren't met
+                        disabled={!selectedTeam || !selectedSeason}
                     >
                         <option value="">-- Select a Player --</option>
-                        {players.length > 0 ? (
-                            players.map((player) => (
-                                <option key={player.PlayerID} value={player.PlayerID}>
-                                    {player.PlayerName}
-                                </option>
-                            ))
-                        ) : (
-                            <option disabled>No players available</option>
-                        )}
+                        {players.map((player) => (
+                            <option key={player.PlayerID} value={player.PlayerID}>
+                                {player.PlayerName}
+                            </option>
+                        ))}
                     </select>
                 </label>
             </div>
 
-            {/* Chart section */}
-            <div style={{marginTop: "20px"}}>
+            <div style={{ marginTop: "20px" }}>
                 {loading ? (
-                    // Show loading message while data is being fetched
                     <p>Loading data...</p>
                 ) : error ? (
-                    // Show error message if an error occurs during data fetching
-                    <p style={{color: "red"}}>{error}</p>
+                    <p style={{ color: "red" }}>{error}</p>
                 ) : performanceData.length > 0 ? (
-                    // Render the chart if there is performance data
                     <ResponsiveContainer width="90%" height={400}>
                         <ComposedChart data={performanceData}>
-                            {/* Add grid lines to the chart */}
-                            <CartesianGrid strokeDasharray="3 3"/>
-
-                            {/* Configure the X-axis */}
-                            <XAxis
-                                dataKey="TimePeriod" // Map X-axis to the "TimePeriod" field in the data
-                                label={{value: "Time Period (Month)", position: "insideBottom", offset: -5}}
-                            />
-
-                            {/* Configure the Y-axis */}
-                            <YAxis
-                                label={{
-                                    value: "WAR", // Label for Y-axis
-                                    angle: -90, // Rotate the label
-                                    position: "insideLeft", // Position label on the left of the axis
-                                }}
-                            />
-
-                            {/* Add a tooltip to show data on hover */}
-                            <Tooltip/>
-
-                            {/* Add a legend to identify the chart elements */}
-                            <Legend/>
-
-                            {/* Add bar chart for WAR per time period */}
-                            <Bar
-                                dataKey="TotalWARInHighStakes" // Map data to "TotalWARInHighStakes"
-                                fill="#8884d8" // Bar color
-                                name="WAR per Time Period" // Name for legend and tooltip
-                            />
-
-                            {/* Add line chart for cumulative WAR */}
-                            <Line
-                                type="monotone" // Smooth line type
-                                dataKey="CumulativeWAR" // Map data to "CumulativeWAR"
-                                stroke="#82ca9d" // Line color
-                                name="Cumulative WAR" // Name for legend and tooltip
-                            />
+                            <CartesianGrid strokeDasharray="3 3" />
+                            <XAxis dataKey="TimePeriod" label={{ value: "Time Period", position: "insideBottom", offset: -5 }} />
+                            <YAxis label={{ value: "WAR", angle: -90, position: "insideLeft" }} />
+                            <Tooltip />
+                            <Legend />
+                            <Bar dataKey="TotalWARInHighStakes" fill="#8884d8" name="WAR per Time Period" />
+                            <Line type="monotone" dataKey="CumulativeWAR" stroke="#82ca9d" name="Cumulative WAR" />
                         </ComposedChart>
                     </ResponsiveContainer>
                 ) : (
-                    // Show message if no data is available for the selected filters
                     selectedPlayer && <p>No data available for this player and year.</p>
                 )}
             </div>
