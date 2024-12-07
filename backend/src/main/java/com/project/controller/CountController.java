@@ -13,19 +13,18 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api")
 @CrossOrigin(origins = "http://localhost:3000")
 public class CountController {
-    
+
     private final JdbcTemplate jdbcTemplate;
 
     public CountController(JdbcTemplate jdbcTemplate) {
 
         this.jdbcTemplate = jdbcTemplate;
-         this.jdbcTemplate.execute("BEGIN DBMS_STATS.GATHER_SCHEMA_STATS('\"YKAZIMLI\"'); END;");
     }
 
 
     @GetMapping("/count")
     public Map<String, Object> getRowCount() {
-        String sql = "SELECT SUM(num_rows) AS total_rows FROM all_tables";
+        String sql = "SELECT SUM(num_rows) AS total_rows FROM all_tables WHERE owner = USER";
         Integer totalRows = jdbcTemplate.queryForObject(sql, Integer.class);
 
         // Return JSON
