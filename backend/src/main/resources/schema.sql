@@ -63,17 +63,16 @@ CREATE TABLE PlayerGame (
 );
 
 -- Users table (Auth)
-CREATE TABLE IF NOT EXISTS authuser (
-    username VARCHAR(50) NOT NULL, 
+CREATE TABLE authuser (
+    username VARCHAR(50) PRIMARY KEY,
     password VARCHAR(100) NOT NULL,
-    enabled BOOLEAN NOT NULL,
-    PRIMARY KEY (username)
+    enabled CHAR(1) NOT NULL
 );
 
 -- Authorities table (roles Auth)
-CREATE TABLE IF NOT EXISTS authorities (
-    username VARCHAR(50) NOT NULL,
-    authority VARCHAR(50) NOT NULL,
+CREATE TABLE authorities (
+    username VARCHAR2(50) NOT NULL,
+    authority VARCHAR2(50) NOT NULL,
     FOREIGN KEY (username) REFERENCES authuser(username),
     PRIMARY KEY (username, authority)
 );
