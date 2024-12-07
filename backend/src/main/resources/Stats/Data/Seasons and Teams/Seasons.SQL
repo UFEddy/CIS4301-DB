@@ -1,0 +1,4 @@
+INSERT INTO Season (SeasonYear) VALUES (2021);
+INSERT INTO Season (SeasonYear) VALUES (2022);
+INSERT INTO Season (SeasonYear) VALUES (2023);
+COMMIT;
